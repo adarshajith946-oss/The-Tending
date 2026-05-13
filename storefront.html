@@ -1,0 +1,165 @@
+<div class="storefront-shell">
+  <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
+
+  <shopify-store
+    store-domain="zvttxe-sy.myshopify.com"
+    public-access-token="34488564c36061b19f826140458c398e"
+    country="US"
+    language="EN"
+  >
+    <header class="topbar">
+      <h1>The Tending Shop</h1>
+      <button class="cart-open" onclick="document.getElementById('main-cart').showModal()">Open Cart</button>
+    </header>
+
+    <shopify-cart id="main-cart">
+      <div slot="empty">Your cart is currently empty.</div>
+      <div slot="checkout-button">Checkout Securely</div>
+    </shopify-cart>
+
+    <main class="product-grid" aria-label="Featured products">
+      <shopify-context type="product" handle="hoodie">
+        <template>
+          <article class="product-card">
+            <div class="product-media">
+              <shopify-media width="360" height="360" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+            </div>
+            <div class="product-content">
+              <h2 class="product-title"><shopify-data query="product.title"></shopify-data></h2>
+              <p class="product-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price" format="money_with_currency"></shopify-money></p>
+              <shopify-variant-selector></shopify-variant-selector>
+              <div class="button-row">
+                <button class="btn-primary" onclick="document.getElementById('main-cart').addLine(event).showModal()" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">Add to Cart</button>
+                <button class="btn-secondary" onclick="document.getElementById('product-modal').showModal(); document.getElementById('product-modal-context').update(event);">View Details</button>
+              </div>
+            </div>
+          </article>
+        </template>
+        <div class="loading" shopify-loading-placeholder>Loading product…</div>
+      </shopify-context>
+
+      <shopify-context type="product" handle="sweatpants">
+        <template>
+          <article class="product-card">
+            <div class="product-media">
+              <shopify-media width="360" height="360" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+            </div>
+            <div class="product-content">
+              <h2 class="product-title"><shopify-data query="product.title"></shopify-data></h2>
+              <p class="product-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price" format="money_with_currency"></shopify-money></p>
+              <shopify-variant-selector></shopify-variant-selector>
+              <div class="button-row">
+                <button class="btn-primary" onclick="document.getElementById('main-cart').addLine(event).showModal()" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">Add to Cart</button>
+                <button class="btn-secondary" onclick="document.getElementById('product-modal').showModal(); document.getElementById('product-modal-context').update(event);">View Details</button>
+              </div>
+            </div>
+          </article>
+        </template>
+        <div class="loading" shopify-loading-placeholder>Loading product…</div>
+      </shopify-context>
+
+      <shopify-context type="product" handle="puffer">
+        <template>
+          <article class="product-card">
+            <div class="product-media">
+              <shopify-media width="360" height="360" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+            </div>
+            <div class="product-content">
+              <h2 class="product-title"><shopify-data query="product.title"></shopify-data></h2>
+              <p class="product-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price" format="money_with_currency"></shopify-money></p>
+              <shopify-variant-selector></shopify-variant-selector>
+              <div class="button-row">
+                <button class="btn-primary" onclick="document.getElementById('main-cart').addLine(event).showModal()" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">Add to Cart</button>
+                <button class="btn-secondary" onclick="document.getElementById('product-modal').showModal(); document.getElementById('product-modal-context').update(event);">View Details</button>
+              </div>
+            </div>
+          </article>
+        </template>
+        <div class="loading" shopify-loading-placeholder>Loading product…</div>
+      </shopify-context>
+    </main>
+
+    <dialog id="product-modal" class="product-modal" aria-label="Product details">
+      <shopify-context id="product-modal-context" type="product" wait-for-update>
+        <template>
+          <div class="modal-shell">
+            <button class="modal-close" onclick="document.getElementById('product-modal').close()" aria-label="Close dialog">✕</button>
+            <div class="modal-grid">
+              <div class="modal-media">
+                <shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+              </div>
+              <div class="modal-content">
+                <p class="modal-vendor"><shopify-data query="product.vendor"></shopify-data></p>
+                <h2 class="modal-title"><shopify-data query="product.title"></shopify-data></h2>
+                <p class="modal-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price" format="money_with_currency"></shopify-money></p>
+                <shopify-variant-selector></shopify-variant-selector>
+                <div class="button-row">
+                  <button class="btn-primary" onclick="document.getElementById('main-cart').addLine(event).showModal()" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">Add to Cart</button>
+                  <button class="btn-secondary" onclick="document.querySelector('shopify-store').buyNow(event)" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">Buy Now</button>
+                </div>
+                <div class="modal-description"><shopify-data query="product.descriptionHtml"></shopify-data></div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="loading" shopify-loading-placeholder>Loading product details…</div>
+      </shopify-context>
+    </dialog>
+  </shopify-store>
+</div>
+
+<style>
+  :root {
+    --bg: #f8fafc;
+    --panel: #ffffff;
+    --text: #111827;
+    --muted: #374151;
+    --accent: #111827;
+    --accent-contrast: #ffffff;
+    --border: #1f2937;
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 48px;
+  }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  .storefront-shell { padding: var(--space-4) var(--space-3); max-width: 1280px; margin: 0 auto; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4); }
+  .topbar h1 { margin: 0; font-size: 2rem; line-height: 1.2; }
+  .product-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: var(--space-3); }
+  .product-card { background: var(--panel); border: 2px solid #d1d5db; border-radius: 16px; padding: var(--space-2); display: flex; flex-direction: column; gap: var(--space-2); }
+  .product-media { display: flex; justify-content: center; background: #fff; }
+  .product-media img { width: 100%; height: auto; object-fit: contain; }
+  .product-title { margin: 0; font-size: 1.25rem; }
+  .product-price { margin: 0; color: var(--muted); font-weight: 700; }
+  .button-row { display: grid; grid-template-columns: 1fr; gap: var(--space-1); margin-top: var(--space-2); }
+  .btn-primary, .btn-secondary, .cart-open { min-height: 48px; border-radius: 12px; border: 2px solid var(--border); font-weight: 700; cursor: pointer; padding: 0 var(--space-2); }
+  .btn-primary, .cart-open { background: var(--accent); color: var(--accent-contrast); }
+  .btn-secondary { background: #ffffff; color: var(--accent); }
+  .loading { padding: var(--space-2); }
+
+  .product-modal { margin: auto; width: min(960px, calc(100% - 24px)); border: 0; border-radius: 16px; padding: 0; }
+  .product-modal::backdrop { background: rgba(17, 24, 39, 0.66); }
+  .modal-shell { padding: var(--space-3); background: var(--panel); color: var(--text); }
+  .modal-close { width: 40px; height: 40px; border-radius: 10px; border: 2px solid var(--border); background: #fff; color: #111; float: right; cursor: pointer; }
+  .modal-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); clear: both; }
+  .modal-media img { width: 100%; height: auto; object-fit: contain; }
+  .modal-vendor { margin: 0; font-size: 0.875rem; text-transform: uppercase; color: #374151; font-weight: 700; }
+  .modal-title { margin: var(--space-1) 0; font-size: 2rem; }
+  .modal-price { margin: 0 0 var(--space-2); font-weight: 700; }
+  .modal-description { color: #1f2937; line-height: 1.6; }
+
+  shopify-cart::part(dialog) { border-radius: 16px; border: 1px solid #d1d5db; }
+  shopify-cart::part(primary-button) { background: #111827; color: #ffffff; border: 2px solid #111827; border-radius: 12px; }
+  shopify-cart::part(secondary-button) { background: #ffffff; color: #111827; fill: #111827; border: 2px solid #111827; border-radius: 12px; }
+
+  @media (min-width: 700px) {
+    .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .button-row { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .modal-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+</style>
